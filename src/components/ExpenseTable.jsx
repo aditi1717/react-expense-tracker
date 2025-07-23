@@ -50,7 +50,7 @@ export default function ExpenseTable({expenses}) {
           <tbody>
             {
             expenses.map((expense)=>{
-                amount=amount+expense.amount;
+                amount=amount+Number(expense.amount);
                 return (<tr key={expense.id}>
               <td>{expense.title}</td>
               <td>{expense.category}</td>
