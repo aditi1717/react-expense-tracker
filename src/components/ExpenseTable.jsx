@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function ExpenseTable({expenses}) {
+     let amount=0;
+    const[total,setTotal]=useState(amount);
   return (
      <table className="expense-table">
           <thead>
@@ -47,17 +49,20 @@ export default function ExpenseTable({expenses}) {
           </thead>
           <tbody>
             {
-            expenses.map((expense)=> (<tr key={expense.id}>
+            expenses.map((expense)=>{
+                amount=amount+expense.amount;
+                return (<tr key={expense.id}>
               <td>{expense.title}</td>
               <td>{expense.category}</td>
               <td>₹{expense.amount}</td>
             </tr>)
+            }
             )
           }
             <tr>
               <th>Total</th>
               <th></th>
-              <th>₹8100</th>
+              <th>₹{amount}</th>
             </tr>
           </tbody>
         </table>
