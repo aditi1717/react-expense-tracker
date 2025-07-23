@@ -85,6 +85,10 @@ main {
     height: 28px;
     font-family: inherit;
 }
+#category{
+    height: 28px;
+    font: inherit;
+}
 
 .add-btn {
     width: 100%;
@@ -113,6 +117,8 @@ main {
 .context-menu div:hover {
     background-color: #ddd;
 }
+
+
 
 @media (max-width: 900px) {
     body {
