@@ -21,7 +21,7 @@ export default function ExpenseForm({ setExpenses }) {
     
     Object.entries(formData).forEach(([key,value])=>{
        validationConfig[key].forEach((rule)=>{
-        console.log(rule.required);
+        // console.log(rule.required);
         
         if(rule.required && !value){
           errorsData[key]=rule.message;
