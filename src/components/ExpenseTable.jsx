@@ -1,24 +1,31 @@
 import React, { useState } from 'react'
 import { useFilter } from '../hooks/useFilter';
+import ContextMenu from './ContextMenu';
 
-export default function ExpenseTable({expenses,setExpenses}) {
+export default function ExpenseTable({setExpense,expenses,setExpenses,setEditingRowId}) {
      let amount=0;
     const[total,setTotal]=useState(amount);
     const [result,setQuery]=useFilter(expenses,(data)=>data.category);
+    const[menuPosition,setMenuPosition]=useState({});
+    const[rowId,setRowId]=useState('');
     
   return (
-     <table className="expense-table">
+    <>
+    <ContextMenu menuPosition={menuPosition} setMenuPosition={setMenuPosition} expenses={expenses} setExpenses={setExpenses} rowId={rowId}  setExpense={setExpense} setEditingRowId={setEditingRowId}/>
+     <table className="expense-table" onClick={()=>{
+      setMenuPosition({});
+     }}>
           <thead>
             <tr>
               <th>Title</th>
               <th>
                 <select onChange={(e)=>setQuery(e.target.value.toLowerCase())}>
                   <option value="">All</option>
-                  <option value="grocery">Grocery</option>
-                  <option value="clothes">Clothes</option>
-                  <option value="bills">Bills</option>
-                  <option value="education">Education</option>
-                  <option value="medicine">Medicine</option>
+                  <option value="Grocery">Grocery</option>
+                  <option value="Clothes">Clothes</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Education">Education</option>
+                  <option value="Medicine">Medicine</option>
                 </select>
               </th>
               <th className="amount-column">
@@ -54,7 +61,13 @@ export default function ExpenseTable({expenses,setExpenses}) {
             {
             result.map((expense)=>{
                 amount=amount+Number(expense.amount);
-                return (<tr key={expense.id}>
+                return (<tr key={expense.id} onContextMenu={(e)=>{
+                  e.preventDefault()
+                  // console.log(e.clientX,e.clientY);
+                  setRowId(expense.id)
+                  setMenuPosition({left:e.clientX+4,top:e.clientY+4})
+                  
+                }} >
               <td>{expense.title}</td>
               <td>{expense.category}</td>
               <td>₹{expense.amount}</td>
@@ -69,5 +82,6 @@ export default function ExpenseTable({expenses,setExpenses}) {
             </tr>
           </tbody>
         </table>
+        </>
   )
 }

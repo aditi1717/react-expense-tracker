@@ -1,24 +1,24 @@
 export default [{
     id:crypto.randomUUID(),
     title:'milk',
-    category:"grocery",
+    category:"Grocery",
     amount:40,
 },
 {
     id:crypto.randomUUID(),
     title:'Shirt',
-    category:"clothes",
+    category:"Clothes",
     amount:600,
 },
 {
     id:crypto.randomUUID(),
     title:'vegetables',
-    category:"grocery",
+    category:"Grocery",
     amount:100,
 },
 {
     id:crypto.randomUUID(),
     title:'Electricity Bill',
-    category:"bill",
+    category:"Bills",
     amount:1100,
 },]
