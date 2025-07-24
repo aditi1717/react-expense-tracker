@@ -36,11 +36,11 @@ main {
     outline: none;
 }
 
-.amount-column div {
+.column div {
     display: flex;
 }
 
-.amount-column span {
+.column span {
     margin-right: 6px;
 }
 
@@ -126,7 +126,9 @@ main {
 .context-menu div:hover {
     background-color: #ddd;
 }
-
+.clear-sort{
+  cursor: pointer;
+}
 
 
 @media (max-width: 900px) {
